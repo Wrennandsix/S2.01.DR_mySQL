@@ -1,10 +1,13 @@
+CREATE DATABASE youtube CHARACTER SET utf8mb4;
+USE youtube;
+
 CREATE TABLE `user` (
   `user_id` int PRIMARY KEY,
   `email` varchar(255),
   `username` varchar(255),
   `password` varchar(255),
   `date_of_birth` timestamp,
-  `gender` ENUM('femenine','masculine','other'),
+  `gender` ENUM('female','male','other'),
   `country` varchar(255),
   `cp` int
 );
@@ -39,9 +42,9 @@ CREATE TABLE `channel` (
   `user` int
 );
 
-CREATE TABLE `suscription` (
-  `suscription_id` int PRIMARY KEY,
-  `suscription_date` date,
+CREATE TABLE `subscription` (
+  `subscription_id` int PRIMARY KEY,
+  `subscription_date` date,
   `user` int,
   `chanel` int
 );
@@ -90,9 +93,9 @@ ALTER TABLE `tag` ADD FOREIGN KEY (`video`) REFERENCES `video` (`video_id`);
 
 ALTER TABLE `channel` ADD FOREIGN KEY (`user`) REFERENCES `user` (`user_id`);
 
-ALTER TABLE `suscription` ADD FOREIGN KEY (`user`) REFERENCES `user` (`user_id`);
+ALTER TABLE `subscription` ADD FOREIGN KEY (`user`) REFERENCES `user` (`user_id`);
 
-ALTER TABLE `suscription` ADD FOREIGN KEY (`chanel`) REFERENCES `channel` (`channel_id`);
+ALTER TABLE `subscription` ADD FOREIGN KEY (`chanel`) REFERENCES `channel` (`channel_id`);
 
 ALTER TABLE `like_dislike_video` ADD FOREIGN KEY (`user`) REFERENCES `user` (`user_id`);
 
